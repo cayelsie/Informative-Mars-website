@@ -12,31 +12,63 @@
 </head>
 
 <body>
-  <div class="container-fluid">
+  <div class="container">
     <div class="jumbotron text-center">
       <h1>Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
-  </div>
+ 
   <br>
-<!-- 
-  <div class = "jumbotron text-left"> -->
+ 
+  <!-- <div class = "container">  -->
     <div class ="row">
-      <div class = "col-md-12 ml-auto">
+      <div class = "col-md-12">
         <h2>Latest Mars News</h2>
         <h3>{{ mars.news_title }}</h3>
           <p>{{ mars.news_paragraph }}</p>
       </div>
     </div>
-  </div>
-
-      <h2>Mars Facts</h2>
-      <div>
-        {{ mars.mars_facts | safe }}
+ 
+  <br>
+  <!-- <div class = "container"> -->
+    <div class = "row">
+      <div class = "col-md-8">
+        <div class = "col-md-12">
+        <h2>Featured Mars Image</h2>
+        <img src = "{{ mars.featured_mars_image }}" alt ="Featured Mars Image">
+        </div>
       </div>
 
+      <div class = "col-md-4">
+        <div class = "col-md-12">
+        <h2>Mars Facts</h2>
+        {{ mars.mars_facts | safe }}
+        </div>
+      </div>
+    </div>
+  
+  <!-- <div class = "container text-center"> -->
+  
+    <div class = "row">
+      <div class ="col-md-6">
+        <div class = "col-md-12">
+          <h2>Mars Hemispheres</h2>
+            <hr>
+           
+        </div>
+
+      </div>
+      
+    <div class = "row">
+      <div class ="col-md-6">
+        <div class = "col-md-12">
+      
+
+        </div>
+      </div>
+    </div>
   </div>
-  </div>
+ 
 </body>
 
 </html>
