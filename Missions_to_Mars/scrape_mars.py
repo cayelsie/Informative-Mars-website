@@ -70,6 +70,58 @@ def scrape_info():
     astro_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(astro_url)
 
+    # Create BeautifulSoup object; parse with 'html.parser'
+    html = browser.html
+    astro_soup = bs(html, 'html.parser')
+
+    #Setting variables for the page main url and also an empty list to house the dictionaries at the end
+    main_url = 'https://astrogeology.usgs.gov/'
+    hemisphere_image_urls = []
+
+    #Use a tag that will create an iterable list of ALL items desired
+    astro_item = astro_soup.find_all('div', class_ = 'item')
+
+    #Look through the soup object
+    for item in astro_item:
+    
+        #Get a parent div above each item desired and then store the href line that will help take us to the desired image page
+        div = item.find('div', class_='description')
+        href=div.a['href']
+    
+        #concatenate the main page url with the desired href
+        hemi_url = (main_url + href)
+    
+        #Get the hemisphere name
+        name = div.find('h3').text
+    
+        #Remove the word 'enhanced'
+        hem_name = name.rsplit(' ', 1)[0]
+
+        #Browser accesses the correct page for each hemisphere
+        browser.visit(hemi_url)
+        
+        #Get the html code for each page
+        html = browser.html
+        
+        #Crate a soup object for each page
+        img_soup = bs(html, 'html.parser')
+        
+        #Search for the images with the img tag
+        img_tag = img_soup.find('img', class_='wide-image')
+            
+        #Extract the image src for each
+        img = img_tag['src']
+        
+        #Concatenate the main page url with the desired href
+        img_url = (main_url + img)
+
+        #Create a list of dictionaries
+        hemisphere_dict = {}
+        hemisphere_dict['title'] = hem_name
+        hemisphere_dict['img_url'] = img_url
+        hemisphere_image_urls.append(hemisphere_dict)
+   
+
 
 
     # Store data in a dictionary
@@ -78,7 +130,7 @@ def scrape_info():
         "news_paragraph": news_p,
         "featured_mars_image": featured_image_url,
         "mars_facts": mars_facts
-        
+        "hemispheres": hemisphere_image_urls     
     }
 
     # Close the browser after scraping
