@@ -1,5 +1,6 @@
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
+import pandas as pd
 import time
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -31,14 +32,52 @@ def scrape_info():
     #Extract & store the paragraph
     news_p= nasa.find('div', class_='article_teaser_body').text
 
-   
+    ##################################################################
+    #Visit JPL url
+    jpl_url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html'
+    browser.visit(jpl_url)
+
+    time.sleep(1)
+
+    # Create BeautifulSoup object; parse with 'html.parser'
+    jpl_html = browser.html
+    jpl_soup = bs(jpl_html, 'html.parser')
+
+    #Get a tag containing featured Mars image
+    items = jpl_soup.find('a', class_='showimg fancybox-thumbs')
+
+    #Select the full image href
+    href = items['href']
+
+    #Save the full url for the image in a variable    
+    featured_image_url = ('https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/' + href)
+    ###################################################################################
+    #Visit Space Facts url using pandas and store the table data
+    mars_url = 'https://space-facts.com/mars/'
+    mars_tables = pd.read_html(mars_url)
+
+    #Get the first table of Mars facts and set as a variable
+    mars_df = mars_tables[0]
+
+    #Set column names
+    mars_df.columns = ['Description', 'Mars']
+
+    #Convert to html
+    mars_facts = mars_df.to_html(index = False)
+    ##################################################################################
+
+    #Visit Astrogeology url
+    astro_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(astro_url)
 
 
 
     # Store data in a dictionary
     mars_dict = {
         "news_title": news_title,
-        "news_p": news_p,
+        "news_paragraph": news_p,
+        "featured_mars_image": featured_image_url,
+        "mars_facts": mars_facts
         
     }
 
