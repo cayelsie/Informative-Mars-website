@@ -129,7 +129,7 @@ def scrape_info():
         "news_title": news_title,
         "news_paragraph": news_p,
         "featured_mars_image": featured_image_url,
-        "mars_facts": mars_facts
+        "mars_facts": mars_facts,
         "hemispheres": hemisphere_image_urls     
     }
 
