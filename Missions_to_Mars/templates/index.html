@@ -17,11 +17,25 @@
     margin: 10px 0px 10px 0px;
   }
 
-  h1 {font-size: 75px;}
+  h1 {font-size: 65px;
+    font-weight: bold;
+    color:saddlebrown
+     }
+
+  h2 {font-size: 40px;
+    font-weight: bold;
+    color:saddlebrown
+    }
+
+  h3{color: saddlebrown}
+
+  h4 {font-family: Arial, Helvetica, sans-serif;}
 
   img {
             width: 100%;
         }
+  
+  
   </style>
  
 </head>
@@ -30,7 +44,7 @@
   <div class="container">
     <div class="jumbotron text-center">
       <h1>Mission to Mars</h1>
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+      <p><a class="btn btn-warning btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
 
     <br>
@@ -39,27 +53,27 @@
     <div class="row">
       <div class="col-md-12">
         <h2>Latest Mars News</h2>
-        <h3>{{ mars.news_title }}</h3>
+        <h4>{{ mars.news_title }}</h4>
         <p>{{ mars.news_paragraph }}</p>
+        <hr>
       </div>
     </div>
 
     <br>
     <!-- <div class = "container"> -->
     <div class="row">
+      
       <div class="col-md-8">
-        <h2>Featured Mars Image</h2>
-        <div class="col-md-12">
-
+        
+        <div class="thumbnail">
+          <h2>Featured Mars Image</h2>
           <img src="{{ mars.featured_mars_image }}" alt="Featured Mars Image">
         </div>
       </div>
 
       <div class="col-md-4">
-        <div class="col-md-12">
-          <h2>Mars Facts</h2>
+          <h3><strong>Mars Facts</h3></strong>
           {{ mars.mars_facts | safe }}
-        </div>
       </div>
     </div>
     <br>
@@ -73,7 +87,7 @@
       <div class="col-md-6">
         <div class="thumbnail">
           <div class = "boxmargin">
-          <img src="{{row['img_url']|default('static/images/error.png', true)}}" alt="..." width=500px height=500px>
+          <img src="{{row['img_url']|default('static/images/error.png', true)}}" alt="Mars Hemisphere" width=500px height=500px>
           <h5 id="caption">{{row['title']}}</h5>
           </div>
         </div>
