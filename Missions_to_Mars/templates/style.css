@@ -1,0 +1,8 @@
+.boxmargin {
+    /* background: lightgray; */
+    padding: 2px;
+    border: rgb(0, 0, 0) 2px solid;
+    margin: 10px 0px 10px 0px;
+  }
+
+  h1 {font-size: 75px;}

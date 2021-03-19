@@ -9,6 +9,21 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .boxmargin {
+    background: lightgray;
+    padding: 2px;
+    border: black 2px solid;
+    margin: 10px 0px 10px 0px;
+  }
+
+  h1 {font-size: 75px;}
+
+  img {
+            width: 100%;
+        }
+  </style>
+ 
 </head>
 
 <body>
@@ -55,10 +70,12 @@
       
       {% for row in mars.hemispheres %}
 
-      <div class="col-md-6 border">
+      <div class="col-md-6">
         <div class="thumbnail">
+          <div class = "boxmargin">
           <img src="{{row['img_url']|default('static/images/error.png', true)}}" alt="..." width=500px height=500px>
           <h5 id="caption">{{row['title']}}</h5>
+          </div>
         </div>
       </div>
    
