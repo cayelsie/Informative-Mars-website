@@ -63,7 +63,7 @@ def scrape_info():
     mars_df.columns = ['Description', 'Mars']
 
     #Convert to html
-    mars_facts = mars_df.to_html(index = False)
+    mars_facts = mars_df.to_html(index = False, justify = 'center', classes = 'table-striped')
     ##################################################################################
 
     #Visit Astrogeology url

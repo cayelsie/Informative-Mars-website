@@ -9,8 +9,10 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  
+<!-- Style section - accessing style.css sheet not effective  -->
   <style>
-    .boxmargin {
+    .imgbox {
     background: lightgray;
     padding: 2px;
     border: black 2px solid;
@@ -31,25 +33,20 @@
 
   h4 {font-family: Arial, Helvetica, sans-serif;}
 
-  img {
-            width: 100%;
-        }
-  
+  img {width: 100%;}
   
   </style>
- 
 </head>
-
+<!-- Start main body with heading and button to initiate scraping  -->
 <body>
   <div class="container">
     <div class="jumbotron text-center">
       <h1>Mission to Mars</h1>
       <p><a class="btn btn-warning btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
-
     <br>
 
-    <!-- <div class = "container">  -->
+    <!-- Mars News Section  -->
     <div class="row">
       <div class="col-md-12">
         <h2>Latest Mars News</h2>
@@ -58,44 +55,37 @@
         <hr>
       </div>
     </div>
-
     <br>
-    <!-- <div class = "container"> -->
+
+     <!-- Mars Image & Facts Table Section  -->
     <div class="row">
-      
-      <div class="col-md-8">
-        
+      <div class="col-md-8"> 
         <div class="thumbnail">
           <h2>Featured Mars Image</h2>
           <img src="{{ mars.featured_mars_image }}" alt="Featured Mars Image">
         </div>
       </div>
-
       <div class="col-md-4">
           <h3><strong>Mars Facts</h3></strong>
           {{ mars.mars_facts | safe }}
       </div>
     </div>
     <br>
-    <!-- <div class = "container"> -->
+
+     <!-- Hemispheres Section  -->
       <h2 class="text-center">Mars Hemispheres</h2>
       <hr>
     <div class="row">
-      
       {% for row in mars.hemispheres %}
-
       <div class="col-md-6">
         <div class="thumbnail">
-          <div class = "boxmargin">
+          <div class = "imgbox">
           <img src="{{row['img_url']|default('static/images/error.png', true)}}" alt="Mars Hemisphere" width=500px height=500px>
           <h5 id="caption">{{row['title']}}</h5>
           </div>
         </div>
       </div>
-   
     {% endfor %}
   </div>
-
 </body>
-
 </html>
