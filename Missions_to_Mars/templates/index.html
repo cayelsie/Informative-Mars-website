@@ -17,58 +17,55 @@
       <h1>Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
- 
-  <br>
- 
-  <!-- <div class = "container">  -->
-    <div class ="row">
-      <div class = "col-md-12">
+
+    <br>
+
+    <!-- <div class = "container">  -->
+    <div class="row">
+      <div class="col-md-12">
         <h2>Latest Mars News</h2>
         <h3>{{ mars.news_title }}</h3>
-          <p>{{ mars.news_paragraph }}</p>
+        <p>{{ mars.news_paragraph }}</p>
       </div>
     </div>
- 
-  <br>
-  <!-- <div class = "container"> -->
-    <div class = "row">
-      <div class = "col-md-8">
-        <div class = "col-md-12">
+
+    <br>
+    <!-- <div class = "container"> -->
+    <div class="row">
+      <div class="col-md-8">
         <h2>Featured Mars Image</h2>
-        <img src = "{{ mars.featured_mars_image }}" alt ="Featured Mars Image">
+        <div class="col-md-12">
+
+          <img src="{{ mars.featured_mars_image }}" alt="Featured Mars Image">
         </div>
       </div>
 
-      <div class = "col-md-4">
-        <div class = "col-md-12">
-        <h2>Mars Facts</h2>
-        {{ mars.mars_facts | safe }}
+      <div class="col-md-4">
+        <div class="col-md-12">
+          <h2>Mars Facts</h2>
+          {{ mars.mars_facts | safe }}
         </div>
       </div>
     </div>
-  
-  <!-- <div class = "container text-center"> -->
-  
-    <div class = "row">
-      <div class ="col-md-6">
-        <div class = "col-md-12">
-          <h2>Mars Hemispheres</h2>
-            <hr>
-           
-        </div>
-
-      </div>
+    <br>
+    <!-- <div class = "container"> -->
+      <h2 class="text-center">Mars Hemispheres</h2>
+    <div class="row">
       
-    <div class = "row">
-      <div class ="col-md-6">
-        <div class = "col-md-12">
-      
+        
+     
+      {% for row in mars.hemispheres[:2] %}
 
+      <div class="col-md-3">
+        <div class="thumbnail">
+          <img src="{{row['img_url']|default('static/images/error.png', true)}}" alt="..." width=200px height=200px>
+          <h5 id="caption">{{row['title']}}</h5>
         </div>
       </div>
-    </div>
+   
+    {% endfor %}
   </div>
- 
+
 </body>
 
 </html>
