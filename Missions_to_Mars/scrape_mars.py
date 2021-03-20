@@ -70,6 +70,8 @@ def scrape_info():
     astro_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(astro_url)
 
+    time.sleep(1)
+
     # Create BeautifulSoup object; parse with 'html.parser'
     html = browser.html
     astro_soup = bs(html, 'html.parser')
